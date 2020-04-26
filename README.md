@@ -11,7 +11,7 @@ A discord bot for Chim
 
 `npm install`
 
-* Add a ".env" file at the root of the project with personal settings.
+* Add a ".env" file at the root of the project (for personal settings).
 * Add the following content to the ".env" file :
 
 `DISCORD_TOKEN=your_private_discord_bot_token`
