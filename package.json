@@ -4,7 +4,8 @@
   "description": "A discord bot for Chim",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/main"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/rgranger/discord-bot-chim/issues"
   },
-  "homepage": "https://github.com/rgranger/discord-bot-chim#readme"
+  "homepage": "https://github.com/rgranger/discord-bot-chim#readme",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0"
+  }
 }
