@@ -1,0 +1,19 @@
+{
+  "name": "discord-bot-chim",
+  "version": "1.0.0",
+  "description": "A discord bot for Chim",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rgranger/discord-bot-chim.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rgranger/discord-bot-chim/issues"
+  },
+  "homepage": "https://github.com/rgranger/discord-bot-chim#readme"
+}
