@@ -1,4 +1,6 @@
-module.exports = (msg, args) => {
-  msg.reply('WIP')
+module.exports = {
+  name: 'help',
+  execute: (msg, args) => {
+    msg.reply('WIP')
+  }
 }
-  

@@ -1,3 +1,6 @@
-module.exports = (msg, args) => {
-    msg.reply('Pong.')
+module.exports = {
+    name: 'ping',
+    execute: (msg, args) => {
+        msg.reply('Pong.')
+    },
 }

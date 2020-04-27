@@ -1,5 +1,8 @@
-module.exports = (msg, args) => {
-  msg.reply(fibonacci(args[0]))
+module.exports = {
+  name: 'fibo',
+  execute: (msg, args) => {
+    msg.reply(fibonacci(args[0]))
+  }
 }
 
 function fibonacci (n) {

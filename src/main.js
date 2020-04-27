@@ -17,19 +17,17 @@ client.on('message', (msg) => {
     const commands = getCommands()
 
     const args = msg.content.slice(PREFIX.length).split(/ +/)
-    const command = args.shift().toLowerCase()
+    const commandName = args.shift().toLowerCase()
 
-    console.log('command', command)
-
-    if (commands.has(command)) {
+    if (commands.has(commandName)) {
         try {
-            commands.get(command)(msg, args)
+            const command = commands.get(commandName)
+            command.execute(msg, args)
         } catch (err) {
-            console.error(err.message)
             msg.reply(`Unable to process command : ${err.message}`)
         }
     } else {
-        msg.reply(`Unknown command "${command}".\nType "!help" to have a list of the available commands.`)
+        msg.reply(`Unknown command "${commandName}".\nType "!help" to have a list of the available commands.`)
     }
 })
 

@@ -1,5 +1,8 @@
-module.exports = (msg, args) => {
-  msg.reply(factorial(args[0]))
+module.exports = {
+  name: 'fact',
+  execute: (msg, args) => {
+    msg.reply(factorial(args[0]))
+  },
 }
   
 function factorial (n) {
