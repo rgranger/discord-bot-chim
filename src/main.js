@@ -22,7 +22,7 @@ client.on('message', (msg) => {
     if (commands.has(commandName)) {
         try {
             const command = commands.get(commandName)
-            command.execute(msg, args)
+            command.execute(msg, minimist(args, command.options))
         } catch (err) {
             msg.reply(`Unable to process command : ${err.message}`)
         }
