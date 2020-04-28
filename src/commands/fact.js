@@ -1,12 +1,20 @@
-module.exports = {
+const Command = require('../command')
+
+module.exports = new Command({
   name: 'fact',
-  description: 'The factorial function. Takes one integer parameter. Example : !fact 10',
+  description: {
+    title: 'The factorial function.',
+    usage: 'value',
+    examples: [
+      '10'
+    ]
+  },
   execute: (msg, args) => {
     _checkArgs(args)
     msg.reply(factorial(args._[0]))
   },
-}
-  
+})
+
 function factorial (n) {
     if (n === 0) return 1
   

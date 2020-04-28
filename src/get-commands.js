@@ -1,21 +1,37 @@
 const fs = require('fs')
 const path = require('path')
+const { CMD_PREFIX } = require('./config')
+const Command = require('./command')
 
 const commands = new Map()
 
-const helpCommand = {
+const helpCommand = new Command({
     name: 'help',
-    description: 'Show a description of all available commands.',
+    description: {
+        title: 'Show a description of all available commands.',
+        usage: '[commandName]'
+    },
     execute: (msg, args) => {
-      let cmdDescriptions = 'Here is the list of all available commands :\n'
-  
-        commands.forEach((cmd) => {
-            cmdDescriptions += `* ${cmd.name.padEnd(29, ' ')} ${cmd.description}\n`
-        })
+        const commandName = args._[0]
 
-        msg.reply(cmdDescriptions)
+        if (commandName !== undefined) {
+            if (!commands.has(commandName)) {
+                return msg.reply(`Unknown command "${commandName}"`)
+            } else {
+                const command = commands.get(commandName)
+                return msg.reply(command.getLongDesc())
+            }
+        } else {
+            let cmdDescriptions = 'Here is the list of all available commands :\n'
+  
+            commands.forEach((cmd) => {
+                cmdDescriptions += `* ${CMD_PREFIX}${cmd.name.padEnd(29, ' ')} ${cmd.getShortDesc()}\n`
+            })
+
+            return msg.reply(cmdDescriptions)
+        }
     }
-}
+})
 
 commands.set(helpCommand.name, helpCommand)
 

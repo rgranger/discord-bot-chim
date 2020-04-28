@@ -1,9 +1,8 @@
 require('dotenv').config()
 const Discord = require('discord.js')
 const minimist = require('minimist')
+const { CMD_PREFIX } = require('./config')
 const getCommands = require('./get-commands')
-
-const PREFIX = '!'
 
 const client = new Discord.Client()
 
@@ -12,11 +11,11 @@ client.on('ready', () => {
 })
 
 client.on('message', (msg) => {
-    if (!msg.content.startsWith(PREFIX) || msg.author.bot) return;
+    if (!msg.content.startsWith(CMD_PREFIX) || msg.author.bot) return;
     
     const commands = getCommands()
 
-    const args = msg.content.slice(PREFIX.length).split(/ +/)
+    const args = msg.content.slice(CMD_PREFIX.length).split(/ +/)
     const commandName = args.shift().toLowerCase()
 
     if (commands.has(commandName)) {

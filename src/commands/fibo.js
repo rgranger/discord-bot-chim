@@ -1,11 +1,19 @@
-module.exports = {
+const Command = require('../command')
+
+module.exports = new Command({
   name: 'fibo',
-  description: 'The fibonacci function. Takes one integer parameter. Example : !fibo 10',
+  description: {
+    title: 'The fibonacci function.',
+    usage: 'value',
+    examples: [
+      '10'
+    ],
+  },
   execute: (msg, args) => {
     _checkArgs(args)
     msg.reply(fibonacci(args._[0]))
   }
-}
+})
 
 function fibonacci (n) {
     if (n === 0) return 0
