@@ -6,6 +6,6 @@ module.exports = new Command({
         title: "Reply with a 'Pong'",
     },
     execute: (msg, args) => {
-        msg.reply('Pong.')
+        return Promise.resolve(msg.reply('Pong.'))
     },
 })

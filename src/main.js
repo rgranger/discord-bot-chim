@@ -1,6 +1,7 @@
 require('dotenv').config()
+require('./redis-client')
 const Discord = require('discord.js')
-const minimist = require('minimist')
+const parser = require('discord-command-parser')
 const { CMD_PREFIX } = require('./config')
 const getCommands = require('./get-commands')
 
@@ -10,23 +11,25 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`)
 })
 
-client.on('message', (msg) => {
-    if (!msg.content.startsWith(CMD_PREFIX) || msg.author.bot) return;
+client.on('message', async (msg) => {
+    const parsedMsg = parser.parse(msg, CMD_PREFIX)
+
+    if (!parsedMsg.success) return
     
     const commands = getCommands()
 
-    const args = msg.content.slice(CMD_PREFIX.length).split(/ +/)
-    const commandName = args.shift().toLowerCase()
-
-    if (commands.has(commandName)) {
+    if (commands.has(parsedMsg.command)) {
         try {
-            const command = commands.get(commandName)
-            command.execute(msg, minimist(args, command.options))
+            const command = commands.get(parsedMsg.command)
+            await command.execute(msg, parsedMsg.arguments)
         } catch (err) {
             msg.reply(`Unable to process command : ${err.message}`)
         }
     } else {
-        msg.reply(`Unknown command "${commandName}".\nType "!help" to have a list of the available commands.`)
+        msg.reply(
+            `Unknown command "${parsedMsg.command}".\n` +
+            'Type "!help" to have a list of the available commands.'
+        )
     }
 })
 
