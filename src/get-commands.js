@@ -12,7 +12,7 @@ const helpCommand = new Command({
         usage: '[commandName]'
     },
     execute: (msg, args) => {
-        const commandName = args._[0]
+        const commandName = args[0]
 
         if (commandName !== undefined) {
             if (!commands.has(commandName)) {
