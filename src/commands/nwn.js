@@ -16,7 +16,12 @@ module.exports = new Command({
 
     if (!data) throw new Error('Argument "message" must not be empty.')
 
-    return redis.publish('nwn', args.join(' '))
+    const newMessage = JSON.stringify({
+      userID: msg.author.id,
+      data,
+    })
+
+    return redis.publish('nwn', newMessage)
         .then((res) => msg.reply(res))
   },
 })
