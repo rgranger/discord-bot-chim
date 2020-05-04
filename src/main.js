@@ -13,12 +13,12 @@ redisSubClient.on('message', (channel, message) => {
     if (client.channels.cache.has('703964971549196339')) {
         const discordChannel = client.channels.cache.get('703964971549196339')
         try {
-            const { clientID, data } = JSON.parse(message)
+            const { userID, data } = JSON.parse(message)
             discordChannel.send(message)
-            if (client.users.cache.has(clientID)) {
-                client.users.cache.get(clientID).send(data)
+            if (client.users.cache.has(userID)) {
+                client.users.cache.get(userID).send(data)
             } else {
-                discordChannel.send(`Unable to send data to User "${clientID}" : do not exist.`)
+                discordChannel.send(`Unable to send data to User "${userID}" : do not exist.`)
             }
         } catch (err) {
             discordChannel.send(`Unable to process message : ${message}\n${err}`)
