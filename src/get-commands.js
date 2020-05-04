@@ -16,10 +16,10 @@ const helpCommand = new Command({
 
         if (commandName !== undefined) {
             if (!commands.has(commandName)) {
-                return msg.reply(`Unknown command "${commandName}"`)
+                return Promise.resolve(msg.reply(`Unknown command "${commandName}"`))
             } else {
                 const command = commands.get(commandName)
-                return msg.reply(command.getLongDesc())
+                return Promise.resolve(msg.reply(command.getLongDesc()))
             }
         } else {
             let cmdDescriptions = 'Here is the list of all available commands :\n'
@@ -28,7 +28,7 @@ const helpCommand = new Command({
                 cmdDescriptions += `* ${CMD_PREFIX}${cmd.name.padEnd(29, ' ')} ${cmd.getShortDesc()}\n`
             })
 
-            return msg.reply(cmdDescriptions)
+            return Promise.resolve(msg.reply(cmdDescriptions))
         }
     }
 })
