@@ -19,6 +19,11 @@ DISCORD_TOKEN=your_private_discord_bot_token
 REDIS_PORT=6379
 REDIS_HOST=127.0.0.1
 REDIS_PASSWORD=
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_USER=database_username
+MYSQL_PASSWORD=password_for_database_username
+MYSQL_DATABASE=name_of_the_database
 ```
 
 * Start bot :
